@@ -10,9 +10,9 @@ if (len(sys.argv) < 2):
 	exit()
 
 print("Scanning ports of IP address {}".format(sys.argv[1]))
-command = ["nmap", "-oG", sys.argv[1]]
+command = ["nmap", "-oG", "-F", sys.argv[1]]
 if (len(sys.argv) < 3):
-	command.insert(2, "res.txt")
+	command.insert(2, "output.txt")
 else:
 	command.insert(2, sys.argv[2])
 
@@ -26,7 +26,7 @@ res = subprocess.check_output(command)
 if (len(sys.argv) == 3):
 	print("Results of nmap scan stored in {}".format(sys.argv[2]))
 else:
-	print("Results of nmap scan stored in res.txt")
+	print("Results of nmap scan stored in output.txt")
 
 sys.exit()
 exit()
