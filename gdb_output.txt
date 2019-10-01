@@ -1,6 +1,39 @@
-root@kali:~/Projects/kali# gdb -q a.out
-Reading symbols from a.out...
-(No debugging symbols found in a.out)
+root@kali:~/Projects/kali# gdb ./a.out 
+GNU gdb (Debian 8.3-1) 8.3
+Copyright (C) 2019 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...
+(No debugging symbols found in ./a.out)
+(gdb) show disassembly-flavor
+The disassembly flavor is "att".
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x0000000000001135 <+0>:	push   %rbp
+   0x0000000000001136 <+1>:	mov    %rsp,%rbp
+   0x0000000000001139 <+4>:	sub    $0x10,%rsp
+   0x000000000000113d <+8>:	movl   $0x0,-0x4(%rbp)
+   0x0000000000001144 <+15>:	jmp    0x1156 <main+33>
+   0x0000000000001146 <+17>:	lea    0xeb7(%rip),%rdi        # 0x2004
+   0x000000000000114d <+24>:	callq  0x1030 <puts@plt>
+   0x0000000000001152 <+29>:	addl   $0x1,-0x4(%rbp)
+   0x0000000000001156 <+33>:	cmpl   $0x2,-0x4(%rbp)
+   0x000000000000115a <+37>:	jle    0x1146 <main+17>
+   0x000000000000115c <+39>:	mov    $0x0,%eax
+   0x0000000000001161 <+44>:	leaveq 
+   0x0000000000001162 <+45>:	retq   
+End of assembler dump.
 (gdb) break main
 Breakpoint 1 at 0x1139
 (gdb) run
@@ -32,22 +65,6 @@ ds             0x0                 0
 es             0x0                 0
 fs             0x0                 0
 gs             0x0                 0
-(gdb) disassemble main
-Dump of assembler code for function main:
-   0x0000555555555135 <+0>:	push   rbp
-   0x0000555555555136 <+1>:	mov    rbp,rsp
-=> 0x0000555555555139 <+4>:	sub    rsp,0x10
-   0x000055555555513d <+8>:	mov    DWORD PTR [rbp-0x4],0x0
-   0x0000555555555144 <+15>:	jmp    0x555555555156 <main+33>
-   0x0000555555555146 <+17>:	lea    rdi,[rip+0xeb7]        # 0x555555556004
-   0x000055555555514d <+24>:	call   0x555555555030 <puts@plt>
-   0x0000555555555152 <+29>:	add    DWORD PTR [rbp-0x4],0x1
-   0x0000555555555156 <+33>:	cmp    DWORD PTR [rbp-0x4],0x2
-   0x000055555555515a <+37>:	jle    0x555555555146 <main+17>
-   0x000055555555515c <+39>:	mov    eax,0x0
-   0x0000555555555161 <+44>:	leave  
-   0x0000555555555162 <+45>:	ret    
-End of assembler dump.
 (gdb) continue
 Continuing.
 Hello, world!
@@ -56,6 +73,8 @@ Hello, world!
 
 Hello, world!
 
-[Inferior 1 (process 6670) exited normally]
+[Inferior 1 (process 7130) exited normally]
 (gdb) q
 
+---------------------------------------------------------------
+USING AT&T SYNTAX FOR UNIX SYSTEMS

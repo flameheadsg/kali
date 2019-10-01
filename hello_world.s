@@ -31,6 +31,6 @@ _start:
 	# Assemble source .s file:
 	# as -o <assembled.o> <source.s>
 
-	# Link assembled *.o file to executable:
+	# Link assembled .o file to executable:
 	# ld -o <executable_file> <assembled.o>
 
