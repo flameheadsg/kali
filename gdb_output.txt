@@ -1,0 +1,61 @@
+root@kali:~/Projects/kali# gdb -q a.out
+Reading symbols from a.out...
+(No debugging symbols found in a.out)
+(gdb) break main
+Breakpoint 1 at 0x1139
+(gdb) run
+Starting program: /root/Projects/kali/a.out 
+
+Breakpoint 1, 0x0000555555555139 in main ()
+(gdb) info registers
+rax            0x555555555135      93824992235829
+rbx            0x0                 0
+rcx            0x7ffff7fb0718      140737353811736
+rdx            0x7fffffffe288      140737488347784
+rsi            0x7fffffffe278      140737488347768
+rdi            0x1                 1
+rbp            0x7fffffffe190      0x7fffffffe190
+rsp            0x7fffffffe190      0x7fffffffe190
+r8             0x7ffff7fb2a50      140737353820752
+r9             0x7ffff7fe4780      140737354024832
+r10            0x0                 0
+r11            0x27                39
+r12            0x555555555050      93824992235600
+r13            0x7fffffffe270      140737488347760
+r14            0x0                 0
+r15            0x0                 0
+rip            0x555555555139      0x555555555139 <main+4>
+eflags         0x246               [ PF ZF IF ]
+cs             0x33                51
+ss             0x2b                43
+ds             0x0                 0
+es             0x0                 0
+fs             0x0                 0
+gs             0x0                 0
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x0000555555555135 <+0>:	push   rbp
+   0x0000555555555136 <+1>:	mov    rbp,rsp
+=> 0x0000555555555139 <+4>:	sub    rsp,0x10
+   0x000055555555513d <+8>:	mov    DWORD PTR [rbp-0x4],0x0
+   0x0000555555555144 <+15>:	jmp    0x555555555156 <main+33>
+   0x0000555555555146 <+17>:	lea    rdi,[rip+0xeb7]        # 0x555555556004
+   0x000055555555514d <+24>:	call   0x555555555030 <puts@plt>
+   0x0000555555555152 <+29>:	add    DWORD PTR [rbp-0x4],0x1
+   0x0000555555555156 <+33>:	cmp    DWORD PTR [rbp-0x4],0x2
+   0x000055555555515a <+37>:	jle    0x555555555146 <main+17>
+   0x000055555555515c <+39>:	mov    eax,0x0
+   0x0000555555555161 <+44>:	leave  
+   0x0000555555555162 <+45>:	ret    
+End of assembler dump.
+(gdb) continue
+Continuing.
+Hello, world!
+
+Hello, world!
+
+Hello, world!
+
+[Inferior 1 (process 6670) exited normally]
+(gdb) q
+
