@@ -1,1 +1,10 @@
 unistd.h
+*.out
+*.o
+*.log
+*.lock
+*.tmp
+**/logs
+**/bin
+**/out
+**/target
